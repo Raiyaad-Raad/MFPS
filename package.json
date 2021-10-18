@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/Raiyaad-Raad/MFPS#readme",
   "dependencies": {
+    "ascii-table": "^0.0.9",
     "discord.js": "^13.2.0",
     "glob": "^7.1.7",
     "mongoose": "^6.0.2"

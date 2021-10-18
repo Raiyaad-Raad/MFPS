@@ -10,9 +10,9 @@ module.exports = {
      */
     run: async(client, message, args) => {
         const target = message.mentions.members.first()
-        if(!target) return message.channel.reply('No member specified')
+        if(!target) return message.channel.send('No member specified')
         const role = message.mentions.roles.first()
-        if(!role) return message.channel.reply('No role speicifed')
+        if(!role) return message.channel.send('No role speicifed')
 
         await target.roles.add(role)
         message.channel.send({ content: `${target} got the role` })

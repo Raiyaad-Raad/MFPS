@@ -2,6 +2,10 @@ const { glob } = require("glob");
 const { promisify } = require("util");
 const { Client } = require("discord.js");
 const mongoose = require("mongoose");
+const {readdirSync} = require('fs');
+const ascii = require('ascii-table')
+let table = new ascii("Commands");
+table.setHeading('Command', ' Load status');
 
 const globPromise = promisify(glob);
 
@@ -9,6 +13,20 @@ const globPromise = promisify(glob);
  * @param {Client} client
  */
 module.exports = async (client) => {
+    readdirSync('./commands/').forEach(dir => {
+        const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
+        for(let file of commands){
+            let pull = require(`../commands/${dir}/${file}`);
+            if(pull.name){
+                client.commands.set(pull.name, pull);
+                table.addRow(file,'✅')
+            } else {
+                table.addRow(file, '❌ -> Missing a help.name, or help.name is not a string.')
+                continue;
+            }
+        }
+    });
+    console.log(table.toString());
     // Commands
     const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
     commandFiles.map((value) => {

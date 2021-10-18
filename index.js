@@ -11,6 +11,6 @@ client.slashCommands = new Collection();
 client.config = require("./config.json");
 
 
-require("./handler")(client);
+require("./handler/index")(client);
 
 client.login(Token);
