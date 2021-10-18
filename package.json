@@ -28,10 +28,10 @@
     "url": "https://github.com/Raiyaad-Raad/MFPS/issues"
   },
   "homepage": "https://github.com/Raiyaad-Raad/MFPS#readme",
-
   "dependencies": {
     "discord.js": "^13.2.0",
     "glob": "^7.1.7",
     "mongoose": "^6.0.2"
- }
+  },
+  "devDependencies": {}
 }
