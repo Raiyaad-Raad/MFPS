@@ -1,0 +1,37 @@
+{
+  "name": "mfps",
+  "version": "2.0.0",
+  "description": "hey! wassup bruh",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raiyaad-Raad/MFPS.git"
+  },
+  "keywords": [
+    "Moderation",
+    "fun",
+    "play",
+    "slash",
+    "dash",
+    "web",
+    "and",
+    "much",
+    "more!"
+  ],
+  "author": "Raad || PwP Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Raiyaad-Raad/MFPS/issues"
+  },
+  "homepage": "https://github.com/Raiyaad-Raad/MFPS#readme",
+
+  "dependencies": {
+    "discord.js": "^13.2.0",
+    "glob": "^7.1.7",
+    "mongoose": "^6.0.2"
+ }
+}
