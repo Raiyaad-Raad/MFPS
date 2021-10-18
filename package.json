@@ -32,6 +32,5 @@
     "discord.js": "^13.2.0",
     "glob": "^7.1.7",
     "mongoose": "^6.0.2"
-  },
-  "devDependencies": {}
+  }
 }

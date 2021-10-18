@@ -1,1 +1,1 @@
-Worker: node_modules/.bin/node index.js
+Worker: node index.js
