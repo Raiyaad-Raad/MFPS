@@ -17,6 +17,8 @@ module.exports = {
         if(!role) return message.channel.send({ content: `No role specified specify the role you want to remove the role from the ${target}` })
 
         await target.roles.remove(role)
-        message.channel.send({ content: `Removed the role from ${target}` })
+        message.channel.send({ content: `Removed the role from ${target}` }).setTimeout(() => 
+        { message.delete() 
+        }, 5000)
     }
 }

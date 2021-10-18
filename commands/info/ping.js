@@ -10,6 +10,8 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
-        message.channel.send(`${client.ws.ping} ws ping`);
+        message.channel.send(`${client.ws.ping} ws ping`).setTimeout(() => 
+        { message.delete() 
+        }, 5000)
     },
 };

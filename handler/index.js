@@ -3,7 +3,8 @@ const { promisify } = require("util");
 const { Client } = require("discord.js");
 const mongoose = require("mongoose");
 const {readdirSync} = require('fs');
-const ascii = require('ascii-table')
+const ascii = require('ascii-table');
+const { id } = require("common-tags");
 let table = new ascii("Commands");
 table.setHeading('Command', ' Load status');
 
@@ -13,6 +14,7 @@ const globPromise = promisify(glob);
  * @param {Client} client
  */
 module.exports = async (client) => {
+    // Commands Console
     readdirSync('./commands/').forEach(dir => {
         const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
         for(let file of commands){
@@ -27,6 +29,7 @@ module.exports = async (client) => {
         }
     });
     console.log(table.toString());
+
     // Commands
     const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
     commandFiles.map((value) => {
@@ -72,5 +75,10 @@ module.exports = async (client) => {
     const { mongooseConnectionString } = require('../config.json')
     if (!mongooseConnectionString) return;
 
-    mongoose.connect(mongooseConnectionString).then(() => console.log('Connected to mongodb'));
+    mongoose.connect(mongooseConnectionString).then(() => console.log('Connected to mongoose'));
+
+    // reconDB
+    const { db } = require('../reconDB')
+    
+    console.log('Connected to reconDB');
 };
