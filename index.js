@@ -1,6 +1,5 @@
 const { Client, Collection } = require("discord.js");
-const { Token } = require("./config.json"
-)
+const { Token } = require("./config.json")
 const client = new Client({
     intents: 32767,
 });
