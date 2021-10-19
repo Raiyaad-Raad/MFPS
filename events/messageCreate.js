@@ -1,5 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 const client = require("../index");
+const embed = new MessageEmbed()
+.setColor("RED")
+.setDescription("I do not have permission to execute this command") 
 
 client.on("messageCreate", async (message) => {
     if (
@@ -15,10 +18,6 @@ client.on("messageCreate", async (message) => {
         .split(/ +/g);
 
     const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
-
-    const embed = new MessageEmbed()
-    .setColor("RED")
-    .setDescription("I do not have permission to execute this command") 
 
     if (!command) return;
 
