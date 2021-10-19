@@ -1,3 +1,4 @@
+const { MessageEmbed } = require("discord.js");
 const client = require("../index");
 
 client.on("messageCreate", async (message) => {
@@ -21,8 +22,12 @@ client.on("messageCreate", async (message) => {
         "You do not have permissions to use this commands"
     )
 
-    if(!message.guild.me.permissions.has(command.botpermission || [])) return message.channel.send(
-        "You do not have permissions to use this commands"
-    )
+    if(!message.guild.me.permissions.has(command.botpermission || [])) return
+    const embed = new MessageEmbed()
+    .setColor("RED")
+    .setDescription("I do not have permission to execute this command") 
+    message.channel.send({
+        embeds: [embed]
+    })
     await command.run(client, message, args);
 });
