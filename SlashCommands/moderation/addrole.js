@@ -4,6 +4,7 @@ module.exports = {
     name: 'addrole',
     description: 'addrole to someone',
     botPerm: ["MANAGE_ROLES"],
+    userPerm: ["MANAGE_ROLES"],
     options: [
         {
             name: 'target',

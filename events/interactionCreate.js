@@ -1,4 +1,11 @@
+const { MessageEmbed } = require("discord.js");
 const client = require("../index");
+const embed = new MessageEmbed()
+.setColor("RED")
+.setDescription("You don't have permission to use this **COMMAND**")
+const resp = new MessageEmbed()
+.setColor("RED")
+.setDescription("I do not have **PERMISSIONS** to use the **COMMAND**")
 
 client.on("interactionCreate", async (interaction) => {
     // Slash Command Handling
@@ -22,7 +29,12 @@ client.on("interactionCreate", async (interaction) => {
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 
         if(!interaction.guild.me.permissions.has(cmd.botPerm || [])) return interaction.followUp({
-            content: " I do not have permissions to execute this commands", ephemeral: true
+            embeds: [resp], ephemeral: true
+        })
+
+
+        if(!interaction.member.permissions.has(cmd.userPerm || [])) return interaction.followUp({
+            embeds: [embed], ephemeral: true
         })
 
         cmd.run(client, interaction, args);
