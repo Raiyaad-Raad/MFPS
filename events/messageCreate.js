@@ -26,9 +26,9 @@ client.on("messageCreate", async (message) => {
 
     if (!command) return;
 
-   if(command.premium && !await premiumSchema.findOne({ User: message.author.id })) return message.channel.send(
-        "You don't have premium you need to upgrade to premium in order to use this command"
-    )
+//   if(command.premium && !await premiumSchema.findOne({ User: message.author.id })) return message.channel.send(
+//        "You don't have premium you need to upgrade to premium in order to use this command"
+//    )
 
    if(command.premium) {
        premiumGuildSchema.findOne({ Guild: message.guild.id },
