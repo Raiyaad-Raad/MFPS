@@ -36,10 +36,10 @@ client.on("messageCreate", async (message) => {
            if(data)
             return message.reply('This is a premium command')
 
-            if(!data.Permanent && Date.now() > data.Expire) {
-                data.delete();
-                return message.reply("The premium system is expired")
-            }
+           // if(!data.Permanent && Date.now() > data.Expire) {
+           //     data.delete();
+           //     return message.reply("The premium system is expired")
+           // }
 
             if(!message.member.permissions.has(command.permission || [])) return message.channel.send({
                 embeds: [resp]
