@@ -3,6 +3,8 @@ const { Client, Message, MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'removerole',
     descirption: 'Remove role from someone',
+    permission: ["MANAGE_ROLES"],
+    botpermission: ["MANAGE_ROLES"],
     /** 
      * @param {Client} client 
      * @param {Message} message 

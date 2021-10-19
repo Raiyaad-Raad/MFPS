@@ -21,6 +21,10 @@ client.on("interactionCreate", async (interaction) => {
         }
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 
+        if(!interaction.guild.me.permissions.has(cmd.userPerm || [])) return interaction.followUp({
+            content: " I do not have permissions to execute this commands", ephemeral: true
+        })
+
         cmd.run(client, interaction, args);
     }
 
