@@ -9,7 +9,7 @@ module.exports = {
      * @param {String[]} args 
      */
     run: async(client, message, args) => {
-        if(message.author.id !== '') retrun;
+        if(message.author.id !== '889745154745991168') retrun;
 
         const member = 
         message.mentions.members.first() || 
