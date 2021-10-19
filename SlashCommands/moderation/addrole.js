@@ -3,6 +3,7 @@ const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'addrole',
     description: 'addrole to someone',
+    botPerm: ["MANAGE_ROLES"],
     options: [
         {
             name: 'target',
