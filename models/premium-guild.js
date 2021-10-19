@@ -5,6 +5,6 @@ module.exports = m.model(
     new m.Schema({
         Guild: String,
         Expire: Number,
-        Permanent: Boolean, 
+        Permanent: Boolean(true);
     })
 );
