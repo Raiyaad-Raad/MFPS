@@ -38,8 +38,8 @@ client.on("messageCreate", async (message) => {
         
             await command.run(client, message, args);
        
-        })
-   }
+        // })
+  // }
 });
 
 
