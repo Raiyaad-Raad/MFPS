@@ -1,5 +1,11 @@
 const client = require("../index");
 const premiumSchema = require("../models/permium");
+const embed = new MessageEmbed()
+.setColor("RED")
+.setDescription("I do not have permission to execute this command") 
+const resp = new MessageEmbed()
+.setColor("RED")
+.setDescription("You do not have permission to execute this command") 
 
 client.on("messageCreate", async (message) => {
     if (
@@ -19,8 +25,16 @@ client.on("messageCreate", async (message) => {
     if (!command) return;
 
     if(command.premium && !await premiumSchema.findOne({ User: message.author.id })) return message.channel.send(
-        "You don't have premium you need to upgrade to premium in order to use this command"
+        "You don't have User Premium you need to upgrade to UserPremium in order to use this command"
     );
+    
+       if(!message.member.permissions.has(command.permission || [])) return message.channel.send({
+        embeds: [resp]
+    });
+    
+    if(!message.guild.me.permissions.has(command.botpermission || [])) return message.channel.send({
+        embeds: [embed] 
+    });
 
     await command.run(client, message, args);
 });
