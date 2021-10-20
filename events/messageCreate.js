@@ -1,7 +1,7 @@
 
 const { MessageEmbed } = require("discord.js");
 const client = require("../index");
-const premiumSchema = require("../models/premium");
+const premiumSchema = require("../models/permium");
 
 client.on("messageCreate", async (message) => { 
 if ( 
