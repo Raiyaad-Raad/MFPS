@@ -26,20 +26,9 @@ client.on("messageCreate", async (message) => {
 
     if (!command) return;
 
-//   if(command.premium && !await premiumSchema.findOne({ User: message.author.id })) return message.channel.send(
-//        "You don't have premium you need to upgrade to premium in order to use this command"
-//    )
-
-   if(command.premium) {
-       premiumGuildSchema.findOne({ Guild: message.guild.id },
-         async(err, data) => {
-           if(data)
-            return message.reply('This is a premium command')
-
-           // if(!data.Permanent && Date.now() > data.Expire) {
-           //     data.delete();
-           //     return message.reply("The premium system is expired")
-           // }
+   if(command.premium && !await premiumSchema.findOne({ User: message.author.id })) return message.channel.send(
+        "You don't have premium you need to upgrade to premium in order to use this command"
+   )
 
             if(!message.member.permissions.has(command.permission || [])) return message.channel.send({
                 embeds: [resp]
@@ -50,7 +39,7 @@ client.on("messageCreate", async (message) => {
             await command.run(client, message, args);
        
         })
-   } else command.run(client, message, args)
+   }
 });
 
 
