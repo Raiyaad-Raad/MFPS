@@ -1,6 +1,6 @@
 const prefix = require('../config.json');
 const fs = require('fs');
-const xpfile = require('./xp.json');
+const xpfile = require('../xp.json');
 const { Client, MessageEmbed, Messsage} = require('discord.js');
 const client = require('discord.js');
 
@@ -15,7 +15,7 @@ Client.on("messageCreate" ,function(message) {
            reqxp: 100
         }
 // catch errors
-       fs.writeFile("./xp.json",JSON.stringify(xpfile),function(err){ 
+       fs.writeFile("../xp.json",JSON.stringify(xpfile),function(err){ 
         if(err) console.log(err)
        })
     }
