@@ -14,9 +14,17 @@ module.exports = {
 
 
         const target = message.mentions.members.first()
-        if(!target) return message.channel.send('No member specified specify the member you want to remove role from')
+        if(!target) return message.channel.send('No member specified specify the member you want to remove role from').then(msg => {
+            setTimeout(function() {
+            msg.delete()
+            }, 15000)
+            }) 
         const role = message.mentions.roles.first()
-        if(!role) return message.channel.send({ content: `No role specified specify the role you want to remove the role from the ${target}` })
+        if(!role) return message.channel.send({ content: `No role specified specify the role you want to remove the role from the ${target}` }).then(msg => {
+            setTimeout(function() {
+            msg.delete()
+            }, 15000)
+            }) 
 
         await target.roles.remove(role)
         message.channel.send({ content: `Removed the role from ${target}` }).setTimeout(() => 
