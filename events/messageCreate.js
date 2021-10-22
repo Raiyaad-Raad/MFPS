@@ -1,5 +1,6 @@
 const client = require("../index");
 const premiumSchema = require("../models/permium");
+const { MessageEmbed } = require("discord.js");
 const embed = new MessageEmbed()
 .setColor("RED")
 .setDescription("I do not have permission to execute this command") 
