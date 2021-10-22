@@ -1,7 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const client = require("../index");
 const premiumSchema = require("../models/permium");
-const premiumGuildSchema = require("../models/premium-guild");
 const embed = new MessageEmbed()
 .setColor("RED")
 .setDescription("I do not have permission to execute this command") 
@@ -26,38 +24,29 @@ client.on("messageCreate", async (message) => {
 
     if (!command) return;
 
-   // if(command.premium && !await premiumSchema.findOne({ User: message.author.id })) return message.channel.send(
-   //     "You don't have premium you need to upgrade to premium in order to use this command"
-   // )
+    if(command.premium && !await premiumSchema.findOne({ User: message.author.id })) return message.channel.send(
+        "You don't have User Premium you need to upgrade to UserPremium in order to use this command"
+    ).then(msg => {
+        setTimeout(function() {
+        msg.delete()
+        }, 5000)
+        }) 
+    
+       if(!message.member.permissions.has(command.permission || [])) return message.channel.send({
+        embeds: [resp]
+    }).then(msg => {
+        setTimeout(function() {
+        msg.delete()
+        }, 5000)
+        }) 
+    
+    if(!message.guild.me.permissions.has(command.botpermission || [])) return message.channel.send({
+        embeds: [embed] 
+    }).then(msg => {
+        setTimeout(function() {
+        msg.delete()
+        }, 5000)
+        }) 
 
-   if(command.premium) {
-       premiumGuildSchema.findOne({ Guild: message.guild.id },
-         async(err, data) => {
-           if(data)
-            return message.reply('This is a premium command')
-
-            if(!data.Permanent && Date.now() > data.Expire) {
-                data.delete();
-                return message.reply("The premium system is expired")
-            }
-
-            if(!message.member.permissions.has(command.permission || [])) return message.channel.send({
-                embeds: [resp]
-            })
-        
-            if(!message.guild.me.permissions.has(command.botpermission || [])) return message.channel.send({ embeds: [embed] })
-        
-            await command.run(client, message, args);
-       
-        })
-   } else command.run(client, message, args)
+    await command.run(client, message, args);
 });
-
-
-   // if(!message.member.permissions.has(command.permission || [])) return message.channel.send({
-   //     embeds: [resp]
-   // })
-
-    // if(!message.guild.me.permissions.has(command.botpermission || [])) return message.channel.send({ embeds: [embed] })
-
-    // await command.run(client, message, args);
