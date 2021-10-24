@@ -78,6 +78,15 @@ module.exports = {
             .setDescription(`You have been banned from **${message.guild.name}** for: \`${reason}\` duration: ${time}`)]})
             .catch(( ) => { console.log(`The client could not send the ban notice to ${member}.`)});
 
+            client.modlogs(
+                {
+                    Member: member,
+                    Action: "TEMPBAN",
+                    Reason: `${reason} and banned for ${time}`,
+                },
+                 message
+            );
+
         member.ban({reason})
         const resp = new MessageEmbed()
         .setColor("GREEN")

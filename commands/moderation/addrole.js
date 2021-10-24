@@ -13,6 +13,7 @@ module.exports = {
     run: async(client, message, args) => {
         message.delete()
         const target = message.mentions.members.first()
+        const reason = args.slice(1).join(" ") || "Added Roles To User";
         if(!target) return message.channel.send('No member specified').then(msg => {
             setTimeout(function() {
             msg.delete()
@@ -24,6 +25,15 @@ module.exports = {
             msg.delete()
             }, 15000)
             }) 
+
+        client.modlogs(
+        {
+            Member: target,
+            Action: `Added Role to ${target}`,
+            Reason: reason,
+        },
+         message
+    );
 
         await target.roles.add(role)
         message.channel.send({ content: `${target} got the role` }).then(msg => {

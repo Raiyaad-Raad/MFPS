@@ -55,9 +55,17 @@ module.exports = {
         member.send({embeds: [new MessageEmbed()
             .setColor("RED")
             .setAuthor("KICK MASTER")
-            .setDescription(`You have been kick from **${message.guild.name}** for: \`${reason}\` duration: ${time}`)]})
+            .setDescription(`You have been kick from **${message.guild.name}** for: \`${reason}`)]})
             .catch(( ) => { console.log(`The client could not send the ban notice to ${member}.`)});
-        member.kick()
+            client.modlogs(
+                {
+                    Member: member,
+                    Action: "KICK",
+                    Reason: reason,
+                },
+                 message
+            );
+       // member.kick()
 
         const resp = new MessageEmbed()
         .setColor("GREEN")

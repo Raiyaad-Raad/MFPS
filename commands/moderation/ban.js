@@ -40,7 +40,7 @@ module.exports = {
 
         if (
             message.member.roles.highest.position <=
-            member.roles.highest.position
+            Target.roles.highest.position
         )        
         return message.channel.send({
             embeds: [hp]
@@ -51,19 +51,26 @@ module.exports = {
             }) 
 
 
-        member.send({embeds: [new MessageEmbed()
+        Target.send({embeds: [new MessageEmbed()
             .setColor("RED")
             .setAuthor("BAN MASTER")
             .setDescription(`You have been banned from **${message.guild.name}** for: \`${reason}\``)]})
-            .catch(( ) => { console.log(`The client could not send the ban notice to ${member}.`)});
+            .catch(( ) => { console.log(`The client could not send the ban notice to ${Target}.`)});
 
         Target.ban({reason})
+        client.modlogs(
+        {
+            Member: Target,
+            Action: "Ban",
+            Reason: reason,
+        },
+         message);
         const resp = new MessageEmbed()
         .setColor("GREEN")
         .setDescription("SUCCESFUL")
         .setTitle("BAN MASTER")
         .addFields(
-            { name: 'Banned user :', value: `<@${Target.user.id}>`},
+            { name: 'Banned user:', value: `<@${Target.user.id}>`},
             { name: 'Reason:', value: `${reason}`},
             { name: 'Banned user id:', value: `${Target.user.id}`}
         )

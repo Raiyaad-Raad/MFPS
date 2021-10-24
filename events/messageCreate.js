@@ -49,5 +49,30 @@ client.on("messageCreate", async (message) => {
         }, 5000)
         }) 
 
+const modlogsSchema = require('../models/modlogs');
+client.modlogs = async function({ Member, Action, Reason}){
+    const data = await modlogsSchema.findOne({ Guild: message.guild.id });
+    if(!data) return;
+
+    const channel = message.guild.channels.cache.get(data.Channel);
+    const logsEmbed = new MessageEmbed()
+    .setColor("RED")
+    .setTitle('MODLOGS MASTER')
+    .setDescription('Moderataing Detected!')
+    .addFields(
+        { name: "Target:", value: `${Member.user.tag}`},
+        { name: "Target user Id:", value: `${Member.id}`},
+        { name: "Reason:", value: `${Reason || 'No Reason Specified!'}`},
+        { name: "Action Took:", value: `${Action}`},
+    )
+    .setFooter('Modlogs')
+    .setTimestamp()
+
+    channel.send({
+        embeds: [logsEmbed]
+    });
+}
+
+
     await command.run(client, message, args);
 });

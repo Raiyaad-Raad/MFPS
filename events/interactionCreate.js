@@ -3,7 +3,7 @@ const client = require("../index");
 const embed = new MessageEmbed()
 .setColor("RED")
 .setDescription("You don't have permission to use this **COMMAND**")
-const resp = new MessageEmbed()
+const resp = new MessageEmbed() 
 .setColor("RED")
 .setDescription("I do not have **PERMISSIONS** to use the **COMMAND**")
 

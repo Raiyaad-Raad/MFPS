@@ -24,11 +24,29 @@ module.exports = {
             setTimeout(function() {
             msg.delete()
             }, 15000)
-            }) 
+            })
+        const reason = args.slice(1).join(" ")
+        if(!reason) return message.channel.send("Specify the reason my bot don't support removing role from a user without specifing reason its required").then(msg => {
+            setTimeout(function() {
+            msg.delete()
+            }, 15000)
+            })
+
+            client.modlogs(
+                {
+                    Member: target,
+                    Action: `Removed ${role} from ${target}`,
+                    Reason: reason,
+                },
+                 message
+            );
 
         await target.roles.remove(role)
-        message.channel.send({ content: `Removed the role from ${target}` }).setTimeout(() => 
-        { message.delete() 
-        }, 5000)
+            message.channel.send({ content: `Removed the role from ${target}` }).then(msg => {
+                setTimeout(() => 
+                { message.delete() 
+                }, 5000)
+            })
+
     }
 }
